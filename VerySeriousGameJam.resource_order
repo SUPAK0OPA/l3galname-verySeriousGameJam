@@ -1,0 +1,27 @@
+{
+  "FolderOrderSettings":[
+    {"name":"Animation Curves","order":5,"path":"folders/Animation Curves.yy",},
+    {"name":"Objects","order":2,"path":"folders/Objects.yy",},
+    {"name":"Rooms","order":1,"path":"folders/Rooms.yy",},
+    {"name":"Scripts","order":4,"path":"folders/Scripts.yy",},
+    {"name":"Sprites","order":3,"path":"folders/Sprites.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"obj_camera","order":6,"path":"objects/obj_camera/obj_camera.yy",},
+    {"name":"obj_collision","order":2,"path":"objects/obj_collision/obj_collision.yy",},
+    {"name":"obj_collisionMove","order":7,"path":"objects/obj_collisionMove/obj_collisionMove.yy",},
+    {"name":"obj_player","order":1,"path":"objects/obj_player/obj_player.yy",},
+    {"name":"obj_semisolid","order":4,"path":"objects/obj_semisolid/obj_semisolid.yy",},
+    {"name":"obj_semisolidMove","order":5,"path":"objects/obj_semisolidMove/obj_semisolidMove.yy",},
+    {"name":"obj_slope","order":3,"path":"objects/obj_slope/obj_slope.yy",},
+    {"name":"rm_test0","order":1,"path":"rooms/rm_test0/rm_test0.yy",},
+    {"name":"check_semiSolid_platform","order":2,"path":"scripts/check_semiSolid_platform/check_semiSolid_platform.yy",},
+    {"name":"move_y","order":1,"path":"scripts/move_y/move_y.yy",},
+    {"name":"set_onGround","order":4,"path":"scripts/set_onGround/set_onGround.yy",},
+    {"name":"spr_playerMan","order":1,"path":"sprites/spr_playerMan/spr_playerMan.yy",},
+    {"name":"spr_playerManCrouch","order":4,"path":"sprites/spr_playerManCrouch/spr_playerManCrouch.yy",},
+    {"name":"spr_semisolid","order":3,"path":"sprites/spr_semisolid/spr_semisolid.yy",},
+    {"name":"spr_slope","order":2,"path":"sprites/spr_slope/spr_slope.yy",},
+    {"name":"Sprite6","order":8,"path":"sprites/Sprite6/Sprite6.yy",},
+  ],
+}

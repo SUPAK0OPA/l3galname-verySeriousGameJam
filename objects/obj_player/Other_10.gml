@@ -1,0 +1,11 @@
+/// @description Update from global.timeSpeed
+sxCap = ogValues._sxCap * global.timeSpeed;
+xVel = ogValues._xVel * sqr(global.timeSpeed);
+xFriction = ogValues._xFriction * sqr(global.timeSpeed);
+jumpVel = ogValues._jumpVel * global.timeSpeed;
+grav = ogValues._grav * global.timeSpeed;
+termVel = ogValues._termVel * global.timeSpeed;
+buffer = ogValues._buffer / global.timeSpeed;
+jumpCap = ogValues._jumpCap / global.timeSpeed;
+hangFrames = ogValues._hangFrames * global.timeSpeed;
+jumpFrames = ogValues._jumpFrames / global.timeSpeed;
