@@ -11,6 +11,6 @@ view_enabled = true;
 view_visible[0] = true;
 view_set_camera(0, global.camera);
 
-if surface_exists(global.surf) {
-	view_surface_id[0] = global.surf;
+if surface_exists(global.surf2) {
+	view_surface_id[0] = global.surf2;
 }

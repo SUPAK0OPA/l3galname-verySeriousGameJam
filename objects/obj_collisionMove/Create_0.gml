@@ -9,4 +9,4 @@ radius = 32;
 xPrev = 0;
 yPrev = 0;
 
-animCurve = animcurve_get_channel(ac_presets, "easeInLinear");
+animCurve = global.animCurves.EASEINLINEAR;

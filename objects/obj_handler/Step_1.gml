@@ -11,7 +11,11 @@ for (var i=0; i<inputLength; i++) {
 }
 
 if keyboard_check_pressed(ord("R")) { game_restart(); }
-if (global.inputs[KEYS.FULL] == 1) { window_set_fullscreen(!window_get_fullscreen()); }
+if (global.inputs[KEYS.FULL] == 1 && (os_type == os_windows || os_type == os_macosx || os_type == os_linux)) {
+	fullscreen = 1 - fullscreen;
+	window_set_fullscreen(fullscreen);
+	window_resize(fullscreen);
+}
 
 if mouse_check_button_pressed(mb_left) {
 	// Set fps and physics changes
@@ -25,7 +29,7 @@ if mouse_check_button_pressed(mb_left) {
 
 	with (all) { event_user(0); }
 	
-	view_surface_id[0] = -1;
+	//view_surface_id[0] = -1;
 	if instance_exists(obj_player) { obj_player.active = !obj_player.active; }
 }
 
@@ -33,7 +37,22 @@ if mouse_check_button_pressed(mb_left) {
 if (global.inputs[KEYS.START] == 1 && transFrame == 0) {
 	spinDir = 1;
 	transFrame = 1;
+	//if !surface_exists(global.surf2) { global.surf2 = surface_create(640, 360); }
+	//view_surface_id[0] = global.surf2;
+	//if instance_exists(obj_player) { obj_player.active = false; }
 } else if (global.inputs[KEYS.SELECT] == 1 && transFrame == 0) {
 	spinDir = -1;
 	transFrame = 1;
+	//if !surface_exists(global.surf2) { global.surf2 = surface_create(640, 360); }
+	//view_surface_id[0] = global.surf2;
+	//if instance_exists(obj_player) { obj_player.active = false; }
+}
+
+// Animate the stage rotation
+if (transFrame > 0 && transFrame <= 600) {
+	transFrame += 1 * global.timeSpeed;
+} else {
+	transFrame = 0;
+	//view_surface_id[0] = -1;
+	if instance_exists(obj_player) { obj_player.active = true; }
 }

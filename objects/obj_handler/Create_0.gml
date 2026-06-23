@@ -27,7 +27,45 @@ global.cameraTarget = obj_player;
 global.camera = undefined;
 global.cameraClamp = [[1, 1], [1, 1]]; // Room x and y clamping
 
-global.surf = surface_create(640, 360);
+//// Scaling
+fullscreen = 0;
+ideal_width = 640;
+ideal_height = 360;
+
+////// Check for odd number
+if(ideal_width mod 2 = 1) { ideal_width += 1 }
+if(ideal_height mod 2 = 1) { ideal_height += 1 }
+
+var _w = display_get_width();
+var _h = display_get_height();
+
+aspect = _w / ideal_width;
+
+global.windowSize = [0, 0];
+global.windowPos = [0, 0];
+
+function window_resize(full) {
+	if full {
+		global.windowSize[0] = ceil(ideal_width * aspect);
+		global.windowSize[1] = ceil(ideal_height * aspect);
+		
+		global.windowPos[0] = floor((display_get_width()/2) - (global.windowSize[0]/2));
+		global.windowPos[1] = floor((display_get_height()/2) - (global.windowSize[1]/2))
+	} else {
+		global.windowSize[0] = ideal_width;
+		global.windowSize[1] = ideal_height;
+		
+		global.windowPos[0] = 0;
+		global.windowPos[1] = 0;
+	}
+}
+
+window_resize(fullscreen);
+
+application_surface_enable(false);
+global.surf2 = -1;
+//global.surf2 = surface_create(640, 360);
+
 
 #endregion
 
@@ -48,6 +86,7 @@ global.timeSpeed = 1;
 
 window_enable_borderless_fullscreen(true);
 
+// animCurve distance is end - start, realPosition is start + (distance * position) //
 global.animCurves = {
 	LINEAR : animcurve_get_channel(ac_presets, "lienar"),
 	EASEIN : animcurve_get_channel(ac_presets, "easeIn"),
