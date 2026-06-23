@@ -37,22 +37,34 @@ if mouse_check_button_pressed(mb_left) {
 if (global.inputs[KEYS.START] == 1 && transFrame == 0) {
 	spinDir = 1;
 	transFrame = 1;
-	//if !surface_exists(global.surf2) { global.surf2 = surface_create(640, 360); }
-	//view_surface_id[0] = global.surf2;
-	//if instance_exists(obj_player) { obj_player.active = false; }
+	if instance_exists(obj_player) {
+		obj_player.active = false;
+		playerPos = [obj_player.x - obj_camera.cameraPos[0], obj_player.y - obj_camera.cameraPos[1]]; // Relative Position to GUI
+	}
+	screenDirPrev = global.screenDir;
 } else if (global.inputs[KEYS.SELECT] == 1 && transFrame == 0) {
 	spinDir = -1;
 	transFrame = 1;
-	//if !surface_exists(global.surf2) { global.surf2 = surface_create(640, 360); }
-	//view_surface_id[0] = global.surf2;
-	//if instance_exists(obj_player) { obj_player.active = false; }
+	if instance_exists(obj_player) {
+		obj_player.active = false;
+		playerPos = [obj_player.x - obj_camera.cameraPos[0], obj_player.y - obj_camera.cameraPos[1]]; // Relative Position to GUI
+	}
+	screenDirPrev = global.screenDir;
 }
 
 // Animate the stage rotation
-if (transFrame > 0 && transFrame <= 600) {
-	transFrame += 1 * global.timeSpeed;
+if (transFrame > 0 && transFrame <= 210) {
+	//transFrame += 1 * global.timeSpeed;
+	transFrame += 2 * global.timeSpeed;
 } else {
-	transFrame = 0;
-	//view_surface_id[0] = -1;
-	if instance_exists(obj_player) { obj_player.active = true; }
+	if (playerCollide || (instance_exists(obj_player) && instance_place(obj_player.x, obj_player.y, obj_collision))) {
+		playerCollide = true;
+		transFrame += 2 * global.timeSpeed;
+		if (transFrame > 275) { playerCollide = false; }
+	} else {
+		transFrame = 0;
+		//view_surface_id[0] = -1;
+		if instance_exists(obj_player) { obj_player.active = true; }
+		if instance_exists(obj_camera) { obj_camera.cameraSpeed = 0.2; }
+	}
 }

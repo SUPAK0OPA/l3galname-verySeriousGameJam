@@ -29,8 +29,8 @@ global.cameraClamp = [[1, 1], [1, 1]]; // Room x and y clamping
 
 //// Scaling
 fullscreen = 0;
-ideal_width = 640;
-ideal_height = 360;
+ideal_width = 256;
+ideal_height = 224;
 
 ////// Check for odd number
 if(ideal_width mod 2 = 1) { ideal_width += 1 }
@@ -39,7 +39,8 @@ if(ideal_height mod 2 = 1) { ideal_height += 1 }
 var _w = display_get_width();
 var _h = display_get_height();
 
-aspect = _w / ideal_width;
+//aspect = _w / ideal_width;
+aspect = _h / ideal_height;
 
 global.windowSize = [0, 0];
 global.windowPos = [0, 0];
@@ -52,8 +53,8 @@ function window_resize(full) {
 		global.windowPos[0] = floor((display_get_width()/2) - (global.windowSize[0]/2));
 		global.windowPos[1] = floor((display_get_height()/2) - (global.windowSize[1]/2))
 	} else {
-		global.windowSize[0] = ideal_width;
-		global.windowSize[1] = ideal_height;
+		global.windowSize[0] = ideal_width*2;
+		global.windowSize[1] = ideal_height*2;
 		
 		global.windowPos[0] = 0;
 		global.windowPos[1] = 0;
@@ -77,6 +78,7 @@ global.roomCenterY = 0;
 
 transFrame = 0;
 spinDir = 0;
+screenDirPrev = 0;
 
 #endregion
 
@@ -95,5 +97,8 @@ global.animCurves = {
 	FASTSLOW : animcurve_get_channel(ac_presets, "fastSlow"),
 	EASEINLINEAR : animcurve_get_channel(ac_presets, "easeInLinear"),
 }
+
+playerPos = [0, 0];
+playerCollide = false;
 
 #endregion

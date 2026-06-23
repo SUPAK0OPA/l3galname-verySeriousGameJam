@@ -1,9 +1,10 @@
 /// @description Insert description here
-cameraW = 640*1;
-cameraH = 360*1;
+cameraW = 256;
+cameraH = 224;
 cameraTarget = global.cameraTarget;
 cameraPos = [0, 0];
 cameraSpeed = 0.2; // Work in percentage
+cameraScale = 1;
 
 global.camera = camera_create_view(0, 0, cameraW, cameraH);
 

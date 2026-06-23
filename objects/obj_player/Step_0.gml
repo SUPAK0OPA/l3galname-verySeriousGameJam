@@ -103,7 +103,7 @@ if (instance_exists(myFloorPlat) && myFloorPlat.speedX != 0 && place_meeting(x, 
 	moveDir = (global.inputs[KEYS.RIGHT] > 0) - (global.inputs[KEYS.LEFT] > 0);
 	var sxCapReal = sxCap * (1 + (global.inputs[KEYS.SELECT] > 0));
 	
-	if (movePlatSpdPrevTwo != preMovePlatSpdX*(!earlyMovePlatSpdX)) { speedX += preMovePlatSpdX; }
+	//if (movePlatSpdPrevTwo != preMovePlatSpdX*(!earlyMovePlatSpdX)) { speedX += preMovePlatSpdX; }
 	
 	speedX = move_x(speedX + (moveDir * xVel), speedY, sxCapReal);
 
