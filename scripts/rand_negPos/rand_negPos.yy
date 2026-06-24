@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"rand_negPos",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"rand_negPos",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

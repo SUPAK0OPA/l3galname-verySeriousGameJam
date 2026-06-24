@@ -26,6 +26,8 @@ enum KEYS { UP, LEFT, DOWN, RIGHT, START, FULL, SELECT }
 global.cameraTarget = obj_player;
 global.camera = undefined;
 global.cameraClamp = [[1, 1], [1, 1]]; // Room x and y clamping
+global.shake = [true, true]; // horizontal and vertical shake toggle
+global.shakeTick = 100;
 
 //// Scaling
 fullscreen = 0;
@@ -100,5 +102,11 @@ global.animCurves = {
 
 playerPos = [0, 0];
 playerCollide = false;
+playerExists = 0;
+
+// RGB Splite on the drawn surface
+rgbSplit = 0;
+rgbTick = 2;
+rgbSpin = 0;
 
 #endregion
