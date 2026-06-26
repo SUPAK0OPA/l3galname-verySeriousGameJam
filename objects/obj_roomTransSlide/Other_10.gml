@@ -1,0 +1,1 @@
+animSpeed = animSpeedOG * global.timeSpeed;

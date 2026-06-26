@@ -1,0 +1,1 @@
+spinSpeed = spinSpeedOG * global.timeSpeed;

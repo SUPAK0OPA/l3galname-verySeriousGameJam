@@ -1,24 +1,24 @@
 /// @description Varaible Init
-sxCap = 4;
+sxCap = 2;
 speedX = 0;
-xVel = 0.5;
+xVel = 0.4;
 xFriction = 0.25;
 moveDir = 0;
 
-jumpVel = -7;
+jumpVel = -4;
 speedY = 0;
-grav = 0.8;
-termVel = 9;
+grav = 0.6;
+termVel = 6;
 jumpBuffer = true;
 
 buffer = 5;
 inAir = 0;
-jumpCap = 12;
+jumpCap = 11;
 onGround = true;
 
 // States
 crouching = false;
-active = true;
+active = false;
 
 // Coyote Time
 hangFrames = 2;
@@ -36,6 +36,10 @@ movePlatBuffer = [0, 0];
 movePlatSpdPrevTwo = 0;
 downSlopeSemiSolid = noone;
 forgetSemiSolid = noone;
+
+squish = 0;
+spinnerID = -1;
+image_alpha = 1;
 
 // Store original values
 ogValues = {

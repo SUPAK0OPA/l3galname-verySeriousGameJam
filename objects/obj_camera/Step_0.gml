@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Camera work here
 if (global.cameraTarget == undefined || !instance_exists(global.cameraTarget)) { global.cameraTarget = obj_camera; }
 cameraTarget = global.cameraTarget;
 

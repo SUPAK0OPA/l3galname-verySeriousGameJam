@@ -9,6 +9,7 @@ global.keybinds[3] = [ord("D"), vk_right];
 global.keybinds[4] = [ord("Z"), vk_enter];
 global.keybinds[5] = [ord("F")];
 global.keybinds[6] = [ord("X"), vk_shift];
+global.keybinds[7] = [ord("C"), vk_tab];
 
 inputLength = array_length(global.keybinds);
 global.inputs = array_create(inputLength);
@@ -16,7 +17,7 @@ for (var i=0; i<inputLength; i++) {
 	global.inputs[i] = 0;
 }
 
-enum KEYS { UP, LEFT, DOWN, RIGHT, START, FULL, SELECT }
+enum KEYS { UP, LEFT, DOWN, RIGHT, START, FULL, SELECT, ALT }
 
 #endregion
 
@@ -67,6 +68,9 @@ window_resize(fullscreen);
 
 application_surface_enable(false);
 global.surf2 = -1;
+surfBG = -1;
+bgTick = 0;
+bgTickSpeed = 1/2;
 //global.surf2 = surface_create(640, 360);
 
 
@@ -98,6 +102,7 @@ global.animCurves = {
 	ELASTIC : animcurve_get_channel(ac_presets, "elastic"),
 	FASTSLOW : animcurve_get_channel(ac_presets, "fastSlow"),
 	EASEINLINEAR : animcurve_get_channel(ac_presets, "easeInLinear"),
+	EASEOUT : animcurve_get_channel(ac_presets, "easeOut")
 }
 
 playerPos = [0, 0];
@@ -108,5 +113,13 @@ playerExists = 0;
 rgbSplit = 0;
 rgbTick = 2;
 rgbSpin = 0;
+
+timePrev = 0;
+roomPrev = 0;
+
+global.playerState = 0; // 0 for alive, 1 for win, 2 for lose
+
+////ALL FONT CHARACTERS IN ORDER DO NOT TOUCH
+#macro soup " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
 
 #endregion

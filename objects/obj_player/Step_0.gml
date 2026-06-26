@@ -1,6 +1,51 @@
 /// @description Collisions and Physics
 if !active { exit; }
 
+switch global.playerState {
+	case 1:
+		if (inAir < 1) {
+			x = lerp(x, spinnerID.x, 0.05);
+			y = lerp(y, spinnerID.y, 0.05);
+			image_angle -= speedX;
+			speedX += xVel*2;
+			obj_handler.playerPos = [obj_player.x - obj_camera.cameraPos[0], obj_player.y - obj_camera.cameraPos[1]]; // Relative Position to GUI
+			inAir += (1/90) * global.timeSpeed;
+			if (inAir >= 1) {
+				inAir = 1;
+				image_alpha = 2;
+				instance_create_layer(0, 0, "Particles", obj_roomTransFade);
+			}
+		} else if (image_alpha > 0) {
+			image_angle += sxCap * 10;
+			image_alpha -= (1/40) * global.timeSpeed;
+			image_xscale += 1/20 * global.timeSpeed;
+			image_yscale += 1/20 * global.timeSpeed;
+		}
+		exit;
+	case 2:
+		if (inAir < 1) {
+			x = lerp(x, spinnerID.x, 0.05);
+			y = lerp(y, spinnerID.y - (sprite_height/2), 0.05);
+			image_angle -= speedX;
+			speedX += xVel*4;
+			inAir += (1/30) * global.timeSpeed;
+			if (inAir >= 1) {
+				speedX = irandom_range(floor(sxCap/2), ceil(sxCap*2)) * rand_negPos();
+				speedY = irandom_range(floor((jumpVel*2)*1.5), jumpVel);
+				inAir = 1;
+			}
+		} else if (image_alpha > 0) {
+			x += speedX;
+			
+			speedY += grav * global.timeSpeed;
+			if (speedY > termVel) { speedY = termVel; }
+			y += speedY;
+			image_angle += (speedX / ceil(sxCap*1.5)) * 10;
+			image_alpha -= (1/70) * global.timeSpeed;
+		}
+		exit;
+}
+
 #region Get out of solids that positioned into us in begin step
 
 	var _rightWall = noone;
@@ -75,6 +120,7 @@ if (instance_exists(myFloorPlat) && myFloorPlat.speedX != 0 && place_meeting(x, 
 	}
 }
 
+/*
 #region Crouching
 
 	// Transition to crounch
@@ -98,10 +144,12 @@ if (instance_exists(myFloorPlat) && myFloorPlat.speedX != 0 && place_meeting(x, 
 	}
 
 #endregion
+*/
 
 #region X Movement
 	moveDir = (global.inputs[KEYS.RIGHT] > 0) - (global.inputs[KEYS.LEFT] > 0);
-	var sxCapReal = sxCap * (1 + (global.inputs[KEYS.SELECT] > 0));
+	//var sxCapReal = sxCap * (1 + (global.inputs[KEYS.SELECT] > 0));
+	var sxCapReal = sxCap;
 	
 	//if (movePlatSpdPrevTwo != preMovePlatSpdX*(!earlyMovePlatSpdX)) { speedX += preMovePlatSpdX; }
 	
@@ -146,10 +194,14 @@ if (instance_exists(myFloorPlat) && myFloorPlat.speedX != 0 && place_meeting(x, 
 		jumpBuffer = true;
 		inAir = 0;
 		jumpTimer = jumpFrames;
+		squish -= 1/8 * global.timeSpeed;
 	} else {
 		jumpTimer--;
 		if (jumpTimer < 0) { jumpTimer = 0; }
+		squish += 1/10 * global.timeSpeed;
 	}
+	
+	squish = clamp(squish, 0, 1); // Squah & stretch (skew)
 
 	// Set Falling Speed
 	if (speedY > termVel) { speedY = termVel; }
@@ -186,3 +238,19 @@ if (instance_exists(myFloorPlat) && myFloorPlat.speedX != 0 && place_meeting(x, 
 	if (instance_exists(forgetSemiSolid) && !place_meeting(x, y, forgetSemiSolid)) { forgetSemiSolid = noone; }
 	
 #endregion
+
+if place_meeting(x, y, obj_evilSpinner) {
+	speedX = 0;
+	speedY = 0;
+	inAir = 0;
+	spinnerID = instance_place(x, y, obj_evilSpinner);
+	global.playerState = 2;
+}
+
+if place_meeting(x, y, obj_winSpinner) {
+	speedX = 0;
+	speedY = 0;
+	inAir = 0;
+	spinnerID = instance_place(x, y, obj_winSpinner);
+	global.playerState = 1;
+}

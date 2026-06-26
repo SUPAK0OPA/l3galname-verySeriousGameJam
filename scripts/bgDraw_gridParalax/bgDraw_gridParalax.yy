@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"bgDraw_gridParalax",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"bgDraw_gridParalax",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
